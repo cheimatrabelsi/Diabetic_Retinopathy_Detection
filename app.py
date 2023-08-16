@@ -7,7 +7,7 @@ import numpy as np
 
 app = Flask(__name__, static_url_path="/static")
 
-model = tf.keras.models.load_model(r'C:\Users\hp\Desktop\STAGE\flaskapp\your_model.h5')
+model = tf.keras.models.load_model('your_model.h5')
 
 
 @app.route('/')
