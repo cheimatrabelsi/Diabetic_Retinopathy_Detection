@@ -3,14 +3,16 @@ import sys
 import tensorflow as tf
 import PIL.Image
 import numpy as np
+import logging
 
 app = Flask(__name__, static_url_path="/static")
-
+logger = logging.getLogger(__name__)
 model = tf.keras.models.load_model('your_model.h5')
 
 
 @app.route('/')
 def hello():
+    logger.info("Received a GET request")
     return render_template('index.html')
 
 
@@ -40,6 +42,7 @@ def predict():
         print(predicted_class)
         return jsonify({'prediction': predicted_class })
     except Exception as e:
+        logger.error("An error occurred: %s", str(e))
         return jsonify({'error': str(e)})
     # return(render_template('index.html'))
 
